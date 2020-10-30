@@ -30,7 +30,7 @@
                                         </constraints>
                                         <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="5D5-SD-V9f">
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="250" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="5D5-SD-V9f">
                                         <rect key="frame" x="0.0" y="132" width="390" height="618"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ygi-Q1-xNH">
@@ -72,14 +72,14 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Lfk-bt-NoS">
+                                            <stackView opaque="NO" contentMode="center" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Lfk-bt-NoS">
                                                 <rect key="frame" x="16" y="206" width="358" height="404"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DTF-pi-qnF">
-                                                        <rect key="frame" x="67.666666666666686" y="8" width="223" height="388"/>
+                                                    <stackView opaque="NO" contentMode="scaleAspectFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DTF-pi-qnF">
+                                                        <rect key="frame" x="59.666666666666686" y="0.0" width="239" height="66"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UX9-oi-zaV">
-                                                                <rect key="frame" x="0.0" y="0.0" width="161" height="50"/>
+                                                                <rect key="frame" x="8" y="8" width="161" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="Q4r-d5-pyj"/>
                                                                 </constraints>
@@ -88,16 +88,24 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THW-NC-vU0">
-                                                                <rect key="frame" x="169" y="0.0" width="54" height="50"/>
+                                                                <rect key="frame" x="177" y="8" width="54" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="bDG-MO-zJF"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Sign Up"/>
                                                             </button>
                                                         </subviews>
+                                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                     </stackView>
+                                                    <activityIndicatorView opaque="NO" contentMode="top" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="K3f-Rl-v4w">
+                                                        <rect key="frame" x="169" y="66" width="20" height="20"/>
+                                                    </activityIndicatorView>
+                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="nTj-fR-jGm">
+                                                        <rect key="frame" x="59" y="86" width="240" height="318"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
                                                 </subviews>
-                                                <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
+                                                <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
                                             </stackView>
                                         </subviews>
                                         <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
@@ -121,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1317" y="-371"/>
+            <point key="canvasLocation" x="-1323.0769230769231" y="-371.0900473933649"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eW2-LH-oTI">
@@ -272,16 +280,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="JgF-dt-TcZ">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="JgF-dt-TcZ">
                                 <rect key="frame" x="0.0" y="56" width="390" height="651"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="7fh-hg-LhJ">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="7fh-hg-LhJ">
                                         <rect key="frame" x="0.0" y="16" width="390" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="wTU-aO-cGk"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="Kr9-up-Y3k">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="Kr9-up-Y3k">
                                         <rect key="frame" x="0.0" y="132" width="390" height="503"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CLo-5O-pyf">
@@ -318,12 +326,9 @@
                                                     <segue destination="fD4-Rx-LYA" kind="show" id="g7b-8X-EYF"/>
                                                 </connections>
                                             </button>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7c-Hh-gcp">
+                                            <view contentMode="scaleToFill" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="R7c-Hh-gcp">
                                                 <rect key="frame" x="16" y="204" width="358" height="299"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="szM-SM-IOo"/>
-                                                </constraints>
                                             </view>
                                         </subviews>
                                         <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
@@ -412,7 +417,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="f0e-B4-6ck"/>
+        <segue reference="Aum-66-dhm"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="icon_addpin" width="24" height="24"/>
