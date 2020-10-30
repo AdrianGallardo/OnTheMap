@@ -14,6 +14,9 @@ class LoginViewController: UIViewController {
 		// Do any additional setup after loading the view.
 	}
 
+	@IBAction func loginTapped(_ sender: Any) {
+		performSegue(withIdentifier: "completeLogin", sender: nil)
+	}
 
 }
 
