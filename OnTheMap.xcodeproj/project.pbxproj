@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75634D2C254EDF7B001D80E3 /* OnTheMapClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75634D2B254EDF7B001D80E3 /* OnTheMapClient.swift */; };
 		75636B94254C9D6100693E11 /* LocationsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75636B93254C9D6100693E11 /* LocationsMapViewController.swift */; };
 		75636B99254C9DDE00693E11 /* LocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75636B98254C9DDE00693E11 /* LocationsTableViewController.swift */; };
 		75636B9E254C9E0E00693E11 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75636B9D254C9E0E00693E11 /* AddLocationViewController.swift */; };
 		75636BA3254C9E4000693E11 /* FindLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75636BA2254C9E4000693E11 /* FindLocationViewController.swift */; };
+		7563EA0B255256E8009BF5F1 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563EA0A255256E8009BF5F1 /* LoginRequest.swift */; };
+		7563EA1025525E71009BF5F1 /* LoginRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563EA0F25525E71009BF5F1 /* LoginRequestResponse.swift */; };
+		7563EA152552628E009BF5F1 /* OnTheMapResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563EA142552628E009BF5F1 /* OnTheMapResponse.swift */; };
 		75ABBBFC2549A7090021A2D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ABBBFB2549A7090021A2D0 /* AppDelegate.swift */; };
 		75ABBBFE2549A7090021A2D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ABBBFD2549A7090021A2D0 /* SceneDelegate.swift */; };
 		75ABBC002549A7090021A2D0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ABBBFF2549A7090021A2D0 /* LoginViewController.swift */; };
@@ -39,10 +43,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		75634D2B254EDF7B001D80E3 /* OnTheMapClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapClient.swift; sourceTree = "<group>"; };
 		75636B93254C9D6100693E11 /* LocationsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsMapViewController.swift; sourceTree = "<group>"; };
 		75636B98254C9DDE00693E11 /* LocationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsTableViewController.swift; sourceTree = "<group>"; };
 		75636B9D254C9E0E00693E11 /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		75636BA2254C9E4000693E11 /* FindLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLocationViewController.swift; sourceTree = "<group>"; };
+		7563EA0A255256E8009BF5F1 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		7563EA0F25525E71009BF5F1 /* LoginRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestResponse.swift; sourceTree = "<group>"; };
+		7563EA142552628E009BF5F1 /* OnTheMapResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapResponse.swift; sourceTree = "<group>"; };
 		75ABBBF82549A7090021A2D0 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75ABBBFB2549A7090021A2D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75ABBBFD2549A7090021A2D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +126,10 @@
 				75636B98254C9DDE00693E11 /* LocationsTableViewController.swift */,
 				75636B9D254C9E0E00693E11 /* AddLocationViewController.swift */,
 				75636BA2254C9E4000693E11 /* FindLocationViewController.swift */,
+				75634D2B254EDF7B001D80E3 /* OnTheMapClient.swift */,
+				7563EA0A255256E8009BF5F1 /* LoginRequest.swift */,
+				7563EA0F25525E71009BF5F1 /* LoginRequestResponse.swift */,
+				7563EA142552628E009BF5F1 /* OnTheMapResponse.swift */,
 			);
 			path = OnTheMap;
 			sourceTree = "<group>";
@@ -150,6 +162,7 @@
 				75ABBBF42549A7090021A2D0 /* Sources */,
 				75ABBBF52549A7090021A2D0 /* Frameworks */,
 				75ABBBF62549A7090021A2D0 /* Resources */,
+				7564D7BC254CD7B1001D9B38 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -265,13 +278,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7564D7BC254CD7B1001D9B38 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		75ABBBF42549A7090021A2D0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7563EA0B255256E8009BF5F1 /* LoginRequest.swift in Sources */,
 				75636B99254C9DDE00693E11 /* LocationsTableViewController.swift in Sources */,
+				7563EA1025525E71009BF5F1 /* LoginRequestResponse.swift in Sources */,
 				75636B9E254C9E0E00693E11 /* AddLocationViewController.swift in Sources */,
+				7563EA152552628E009BF5F1 /* OnTheMapResponse.swift in Sources */,
+				75634D2C254EDF7B001D80E3 /* OnTheMapClient.swift in Sources */,
 				75636BA3254C9E4000693E11 /* FindLocationViewController.swift in Sources */,
 				75636B94254C9D6100693E11 /* LocationsMapViewController.swift in Sources */,
 				75ABBC002549A7090021A2D0 /* LoginViewController.swift in Sources */,

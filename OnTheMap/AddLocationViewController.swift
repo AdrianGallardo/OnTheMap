@@ -8,6 +8,7 @@
 import UIKit
 
 class AddLocationViewController: UIViewController {
+	
 	override func viewWillAppear(_ animated: Bool) {
 		tabBarController?.tabBar.isHidden = true
 	}
