@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
 	@IBOutlet weak var emailTextField: UITextField!
 	@IBOutlet weak var passwordTextField: UITextField!
@@ -18,13 +18,19 @@ class LoginViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
+		passwordTextField.delegate = self
 	}
-//MARK:- Actions
+
 	@IBAction func loginTapped(_ sender: Any) {
-		setLoginIn(true)
-		OnTheMapClient.login(username: self.emailTextField.text ?? "", password: self.passwordTextField.text ?? "", completion: self.handleLoginResponse(success:error:))
+		login()
 	}
-//MARK:- Handlers
+
+	func login() {
+		setLoginIn(true)
+		OnTheMapClient.login(username: self.emailTextField.text ?? "", password: self.passwordTextField.text ?? "",
+												 completion: self.handleLoginResponse(success:error:))
+	}
+// MARK: - Handlers
 	func handleLoginResponse(success: Bool, error: Error?) {
 		setLoginIn(false)
 		if success {
@@ -33,7 +39,7 @@ class LoginViewController: UIViewController {
 			showLoginFailure(message: error?.localizedDescription ?? "")
 		}
 	}
-//MARK:- LoginIn helper methods
+// MARK: - LoginIn helper methods
 	func setLoginIn(_ loginIn: Bool) {
 		if loginIn {
 			activityIndicator.startAnimating()
@@ -50,6 +56,12 @@ class LoginViewController: UIViewController {
 		let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
 		alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 		show(alertVC, sender: nil)
+	}
+
+// MARK: - TextField Delegate
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		login()
+		return true
 	}
 
 }

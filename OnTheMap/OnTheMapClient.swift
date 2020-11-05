@@ -15,7 +15,8 @@ class OnTheMapClient {
 		print("username: \(username)")
 		print("password: \(password)")
 		print(String(reflecting: body))
-		taskForPOSTRequest(url: Endpoints.createSessionId.url, response: LoginRequestResponse.self, body: body) { (response, error) in
+		taskForPOSTRequest(url: Endpoints.createSessionId.url,
+											 response: LoginRequestResponse.self, body: body) { (response, error) in
 			if let response = response {
 				sessionID = response.session.id
 				completion(true, nil)
@@ -25,8 +26,21 @@ class OnTheMapClient {
 		}
 	}
 
-//MARK:- Tasks
-	class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL?, response: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void) {
+	class func getStudentLocations(limit: Int, completion: @escaping (StudentLocations?, Error?) -> Void) {
+		taskForGETRequest(url: Endpoints.getStudentLocations(limit).url, response: StudentLocations.self) { (response, error) in
+			if let response = response {
+				completion(response, nil)
+			} else {
+				completion(nil, error)
+			}
+		}
+	}
+
+// MARK: - Tasks
+	class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL?,
+																																								 response: ResponseType.Type,
+																																								 body: RequestType,
+																																								 completion: @escaping (ResponseType?, Error?) -> Void) {
 		guard let url = url else {
 			return
 		}
@@ -40,7 +54,7 @@ class OnTheMapClient {
 			request.httpBody = try JSONEncoder().encode(body)
 			print(String(data: request.httpBody!, encoding: .utf8)!)
 
-			let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+			let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
 				guard let data = data else {
 					print("error data")
 					DispatchQueue.main.async {
@@ -78,8 +92,36 @@ class OnTheMapClient {
 			}
 		}
 	}
+
+	class func taskForGETRequest<ResponseType: Decodable>(url: URL?, response: ResponseType.Type, completion: @escaping (ResponseType?, Error?) -> Void){
+		guard let url = url else {
+			return
+		}
+		let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+			guard let data = data else {
+				DispatchQueue.main.async {
+					completion(nil, error)
+				}
+				return
+			}
+
+			let decoder = JSONDecoder()
+			do {
+				let responseObject = try decoder.decode(ResponseType.self, from: data)
+				DispatchQueue.main.async {
+					completion(responseObject, nil)
+				}
+			} catch {
+				print("taskForGETRequest: " +  error.localizedDescription)
+				DispatchQueue.main.async {
+					completion(nil, error)
+				}
+			}
+		}
+		task.resume()
+	}
 }
-//MARK:- Endpoints
+// MARK: - Endpoints
 extension OnTheMapClient {
 	enum Endpoints {
 		static let base = "https://onthemap-api.udacity.com/v1"
