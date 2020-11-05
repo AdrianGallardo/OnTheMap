@@ -10,6 +10,9 @@ import UIKit
 class LocationsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 	
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var activityIndicatorView: UIView!
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
 	var locations: StudentLocations?
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -21,10 +24,20 @@ class LocationsTableViewController: UIViewController, UITableViewDataSource, UIT
 	}
 
 	func loadData() {
+		self.activityIndicator.startAnimating()
+		self.activityIndicatorView.isHidden = false
+
 		OnTheMapClient.getStudentLocations(limit: 100) { (studentLocations, error) in
 			guard let studentLocations = studentLocations else {
+				self.activityIndicator.stopAnimating()
+				self.activityIndicatorView.isHidden = true
+				print(String(reflecting:error))
 				return
 			}
+
+			self.activityIndicator.stopAnimating()
+			self.activityIndicatorView.isHidden = true
+
 			self.locations = studentLocations
 			self.tableView.reloadData()
 		}

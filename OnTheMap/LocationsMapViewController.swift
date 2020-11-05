@@ -11,15 +11,27 @@ import MapKit
 class LocationsMapViewController: UIViewController, MKMapViewDelegate {
 
 	@IBOutlet weak var mapView: MKMapView!
+	@IBOutlet weak var activityIndicatorView: UIView!
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
 	override func viewWillAppear(_ animated: Bool) {
 		tabBarController?.tabBar.isHidden = false
 	}
 
 	override func viewDidLoad() {
+		loadData()
+	}
+
+	func loadData() {
+		self.activityIndicator.startAnimating()
+		self.activityIndicatorView.isHidden = false
+
 		OnTheMapClient.getStudentLocations(limit: 100) { (studentLocations, error) in
 			guard let studentLocations = studentLocations else {
-				return 
+				self.activityIndicator.stopAnimating()
+				self.activityIndicatorView.isHidden = true
+				print(String(reflecting:error))
+				return
 			}
 			var annotations = [MKPointAnnotation]()
 
@@ -33,6 +45,9 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
 				annotations.append(annotation)
 			}
 
+			self.activityIndicator.stopAnimating()
+			self.activityIndicatorView.isHidden = true
+
 			self.mapView.addAnnotations(annotations)
 		}
 	}
@@ -42,6 +57,7 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
 	}
 
 	@IBAction func refresh(_ sender: Any) {
+		loadData()
 	}
 
 	// MARK: - MKMapViewDelegate

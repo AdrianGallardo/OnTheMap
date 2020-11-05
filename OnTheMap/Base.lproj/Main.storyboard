@@ -199,14 +199,33 @@
                                     <outlet property="delegate" destination="wLv-Ks-Vws" id="JCt-si-2P4"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bw2-mP-TNJ">
+                                <rect key="frame" x="0.0" y="56" width="390" height="651"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="xD7-2T-ujv">
+                                        <rect key="frame" x="176" y="307" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="xD7-2T-ujv" firstAttribute="centerX" secondItem="Bw2-mP-TNJ" secondAttribute="centerX" id="3Se-z2-xHK"/>
+                                    <constraint firstItem="xD7-2T-ujv" firstAttribute="centerY" secondItem="Bw2-mP-TNJ" secondAttribute="centerY" id="fDr-Zp-OV0"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nvh-X7-IcF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Bw2-mP-TNJ" firstAttribute="top" secondItem="nvh-X7-IcF" secondAttribute="top" id="3lV-AB-f9a"/>
+                            <constraint firstItem="nvh-X7-IcF" firstAttribute="bottom" secondItem="Bw2-mP-TNJ" secondAttribute="bottom" id="5RX-g5-eoJ"/>
                             <constraint firstItem="nvh-X7-IcF" firstAttribute="bottom" secondItem="A82-Tc-siQ" secondAttribute="bottom" id="6JX-Ls-KD6"/>
                             <constraint firstItem="nvh-X7-IcF" firstAttribute="trailing" secondItem="A82-Tc-siQ" secondAttribute="trailing" id="9gn-BD-qnW"/>
+                            <constraint firstItem="nvh-X7-IcF" firstAttribute="trailing" secondItem="Bw2-mP-TNJ" secondAttribute="trailing" id="Cww-gy-xzR"/>
                             <constraint firstItem="A82-Tc-siQ" firstAttribute="leading" secondItem="nvh-X7-IcF" secondAttribute="leading" id="DhU-EI-Xz5"/>
                             <constraint firstItem="A82-Tc-siQ" firstAttribute="top" secondItem="nvh-X7-IcF" secondAttribute="top" id="go8-2O-Ep8"/>
+                            <constraint firstItem="Bw2-mP-TNJ" firstAttribute="centerY" secondItem="nvh-X7-IcF" secondAttribute="centerY" id="liZ-Gl-RJY"/>
+                            <constraint firstItem="Bw2-mP-TNJ" firstAttribute="leading" secondItem="nvh-X7-IcF" secondAttribute="leading" id="nIz-kB-xNw"/>
+                            <constraint firstItem="Bw2-mP-TNJ" firstAttribute="centerX" secondItem="nvh-X7-IcF" secondAttribute="centerX" id="obL-45-M09"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="icon_listview-deselected" id="Mbs-TZ-4r6"/>
@@ -230,6 +249,8 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="xD7-2T-ujv" id="KMI-gL-73Q"/>
+                        <outlet property="activityIndicatorView" destination="Bw2-mP-TNJ" id="uID-1N-fMt"/>
                         <outlet property="tableView" destination="A82-Tc-siQ" id="FU7-DK-tqS"/>
                     </connections>
                 </viewController>
@@ -265,13 +286,32 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Sif-WX-9VV">
                                 <rect key="frame" x="0.0" y="56" width="390" height="651"/>
                             </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VHq-Ga-Cw2">
+                                <rect key="frame" x="0.0" y="56" width="390" height="651"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="q3H-LZ-8DA">
+                                        <rect key="frame" x="176" y="307" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="q3H-LZ-8DA" firstAttribute="centerX" secondItem="VHq-Ga-Cw2" secondAttribute="centerX" id="pDG-Fs-YwC"/>
+                                    <constraint firstItem="q3H-LZ-8DA" firstAttribute="centerY" secondItem="VHq-Ga-Cw2" secondAttribute="centerY" id="vms-EN-hbt"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UVT-B5-XzG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="UVT-B5-XzG" firstAttribute="bottom" secondItem="VHq-Ga-Cw2" secondAttribute="bottom" id="9dg-cX-XIh"/>
                             <constraint firstItem="Sif-WX-9VV" firstAttribute="leading" secondItem="UVT-B5-XzG" secondAttribute="leading" id="A91-h9-PkU"/>
+                            <constraint firstItem="VHq-Ga-Cw2" firstAttribute="top" secondItem="UVT-B5-XzG" secondAttribute="top" id="NTw-uz-nAv"/>
+                            <constraint firstItem="UVT-B5-XzG" firstAttribute="trailing" secondItem="VHq-Ga-Cw2" secondAttribute="trailing" id="Nzf-xu-flB"/>
                             <constraint firstItem="UVT-B5-XzG" firstAttribute="trailing" secondItem="Sif-WX-9VV" secondAttribute="trailing" id="RmS-jn-qY7"/>
+                            <constraint firstItem="VHq-Ga-Cw2" firstAttribute="centerX" secondItem="UVT-B5-XzG" secondAttribute="centerX" id="Yev-u2-8dT"/>
                             <constraint firstItem="Sif-WX-9VV" firstAttribute="top" secondItem="UVT-B5-XzG" secondAttribute="top" id="bER-mv-7LT"/>
+                            <constraint firstItem="VHq-Ga-Cw2" firstAttribute="leading" secondItem="UVT-B5-XzG" secondAttribute="leading" id="c4D-mk-gSI"/>
+                            <constraint firstItem="VHq-Ga-Cw2" firstAttribute="centerY" secondItem="UVT-B5-XzG" secondAttribute="centerY" id="fpx-no-x0e"/>
                             <constraint firstItem="UVT-B5-XzG" firstAttribute="bottom" secondItem="Sif-WX-9VV" secondAttribute="bottom" id="gzX-gK-da9"/>
                         </constraints>
                     </view>
@@ -296,6 +336,8 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="q3H-LZ-8DA" id="xxZ-FD-hxC"/>
+                        <outlet property="activityIndicatorView" destination="VHq-Ga-Cw2" id="rcK-TO-pPX"/>
                         <outlet property="mapView" destination="Sif-WX-9VV" id="Tem-8t-zFB"/>
                     </connections>
                 </viewController>
