@@ -199,7 +199,7 @@
                                     <outlet property="delegate" destination="wLv-Ks-Vws" id="JCt-si-2P4"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bw2-mP-TNJ">
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bw2-mP-TNJ">
                                 <rect key="frame" x="0.0" y="56" width="390" height="651"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="xD7-2T-ujv">
@@ -289,7 +289,7 @@
                                     <outlet property="delegate" destination="pbx-cf-KQY" id="RP1-7b-iGk"/>
                                 </connections>
                             </mapView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VHq-Ga-Cw2">
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VHq-Ga-Cw2">
                                 <rect key="frame" x="0.0" y="56" width="390" height="651"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="q3H-LZ-8DA">
@@ -399,7 +399,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <segue destination="fD4-Rx-LYA" kind="show" id="g7b-8X-EYF"/>
+                                                    <action selector="findLocation:" destination="Xun-NT-e2n" eventType="touchUpInside" id="NHt-gJ-Y6v"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="R7c-Hh-gcp">
@@ -423,6 +423,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Location" id="RBK-6f-HFI"/>
+                    <connections>
+                        <outlet property="findLocationButton" destination="EQt-Dz-snG" id="3sa-Nl-9cf"/>
+                        <outlet property="locationTextField" destination="CLo-5O-pyf" id="1B3-YO-dzf"/>
+                        <outlet property="mediaUrlTextField" destination="RtG-gM-2tR" id="Q4r-22-Szd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="121-8D-g41" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -431,16 +436,19 @@
         <!--Find Location View Controller-->
         <scene sceneID="DKM-P4-0BA">
             <objects>
-                <viewController id="fD4-Rx-LYA" customClass="FindLocationViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="findLocationViewController" id="fD4-Rx-LYA" customClass="FindLocationViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DG1-Ij-wZD">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yFY-5q-UCA">
-                                <rect key="frame" x="0.0" y="56" width="390" height="651"/>
+                                <rect key="frame" x="0.0" y="44" width="390" height="766"/>
+                                <connections>
+                                    <outlet property="delegate" destination="fD4-Rx-LYA" id="Qg8-5m-Q1T"/>
+                                </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0AO-TT-Rog">
-                                <rect key="frame" x="16" y="625" width="358" height="50"/>
+                                <rect key="frame" x="16" y="728" width="358" height="50"/>
                                 <color key="backgroundColor" red="0.2901960784" green="0.62745098040000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="QhK-6o-2Mo"/>
@@ -453,6 +461,9 @@
                                         <integer key="value" value="25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="finish:" destination="fD4-Rx-LYA" eventType="touchUpInside" id="Yxp-ea-O7k"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="k1m-Jf-6NL"/>
@@ -468,6 +479,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0z0-GO-E0i"/>
+                    <connections>
+                        <outlet property="mapView" destination="yFY-5q-UCA" id="2TJ-Pr-B70"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKV-Qb-nkz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -493,7 +507,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="f0e-B4-6ck"/>
+        <segue reference="Aum-66-dhm"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="icon_addpin" width="24" height="24"/>
