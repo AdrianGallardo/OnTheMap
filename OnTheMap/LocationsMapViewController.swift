@@ -30,7 +30,7 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
 			guard let studentLocations = studentLocations else {
 				self.activityIndicator.stopAnimating()
 				self.activityIndicatorView.isHidden = true
-				print(String(reflecting:error))
+				print(String(reflecting: error))
 				return
 			}
 			var annotations = [MKPointAnnotation]()
@@ -64,7 +64,6 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
 	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 
 		let reuseId = "pin"
-
 		var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
 
 		if pinView == nil {
@@ -85,10 +84,16 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
 							 calloutAccessoryControlTapped control: UIControl) {
 		print("tap")
 		if control == view.rightCalloutAccessoryView {
-			if let toOpen = view.annotation?.subtitle! {
-				print(String(reflecting: toOpen))
-				UIApplication.shared.open(URL(string: toOpen)!, options: [:], completionHandler: nil)
+			guard let subtitle = view.annotation?.subtitle else {
+				return
 			}
+			guard let mediaString = subtitle else {
+				return
+			}
+			guard let mediaUrl = URL(string: mediaString) else {
+				return
+			}
+			UIApplication.shared.open(mediaUrl)
 		}
 	}
 }

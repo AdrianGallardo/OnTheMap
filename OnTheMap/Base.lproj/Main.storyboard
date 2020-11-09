@@ -203,7 +203,7 @@
                                 <rect key="frame" x="0.0" y="56" width="390" height="651"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="xD7-2T-ujv">
-                                        <rect key="frame" x="176" y="307" width="37" height="37"/>
+                                        <rect key="frame" x="176.66666666666666" y="307" width="37" height="37"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -285,12 +285,15 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Sif-WX-9VV">
                                 <rect key="frame" x="0.0" y="56" width="390" height="651"/>
+                                <connections>
+                                    <outlet property="delegate" destination="pbx-cf-KQY" id="RP1-7b-iGk"/>
+                                </connections>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VHq-Ga-Cw2">
                                 <rect key="frame" x="0.0" y="56" width="390" height="651"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="q3H-LZ-8DA">
-                                        <rect key="frame" x="176" y="307" width="37" height="37"/>
+                                        <rect key="frame" x="176.66666666666666" y="307" width="37" height="37"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>

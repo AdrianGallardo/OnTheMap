@@ -31,7 +31,7 @@ class LocationsTableViewController: UIViewController, UITableViewDataSource, UIT
 			guard let studentLocations = studentLocations else {
 				self.activityIndicator.stopAnimating()
 				self.activityIndicatorView.isHidden = true
-				print(String(reflecting:error))
+				print(String(reflecting: error))
 				return
 			}
 
@@ -70,5 +70,12 @@ class LocationsTableViewController: UIViewController, UITableViewDataSource, UIT
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		guard let mediaString = locations?.results[indexPath.row].mediaURL else {
+			return
+		}
+		guard let mediaUrl = URL(string: mediaString) else {
+			return
+		}
+		UIApplication.shared.open(mediaUrl)
 	}
 }
