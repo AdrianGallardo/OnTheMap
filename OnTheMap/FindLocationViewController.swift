@@ -10,18 +10,38 @@ import MapKit
 
 class FindLocationViewController: UIViewController, MKMapViewDelegate {
 	@IBOutlet weak var mapView: MKMapView!
+	@IBOutlet weak var activityIndicatorView: UIView!
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	var coordinates: CLLocationCoordinate2D?
 	var mediaUrl: String?
 
 	override func viewWillAppear(_ animated: Bool) {
 		tabBarController?.tabBar.isHidden = true
+		loadUserData()
+	}
 
-		if let coordinates = coordinates {
+	func loadUserData() {
+		self.activityIndicator.startAnimating()
+		self.activityIndicatorView.isHidden = false
+
+		OnTheMapClient.getUserData(completion: self.handleGetUserData(userData:error:))
+	}
+
+	func handleGetUserData(userData: UserData?, error: Error?) {
+		self.activityIndicator.stopAnimating()
+		self.activityIndicatorView.isHidden = true
+
+		guard let userData = userData else {
+			print(String(reflecting: error))
+			return
+		}
+
+		if let coordinates = self.coordinates {
 			let annotation = MKPointAnnotation()
 			annotation.coordinate = coordinates
-			annotation.title = "HOLA MUNDO"
+			annotation.title = "\(userData.firstName) \(userData.lastName)"
 			annotation.subtitle = self.mediaUrl
-			mapView.addAnnotation(annotation)
+			self.mapView.addAnnotation(annotation)
 		}
 	}
 

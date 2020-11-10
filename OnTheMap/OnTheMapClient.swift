@@ -27,7 +27,18 @@ class OnTheMapClient {
 	}
 
 	class func getStudentLocations(limit: Int, completion: @escaping (StudentLocations?, Error?) -> Void) {
-		taskForGETRequest(url: Endpoints.getStudentLocations(limit).url, response: StudentLocations.self) { (response, error) in
+		taskForGETRequest(url: Endpoints.getStudentLocations(limit).url,
+										response: StudentLocations.self) { (response, error) in
+			if let response = response {
+				completion(response, nil)
+			} else {
+				completion(nil, error)
+			}
+		}
+	}
+
+	class func getUserData(completion: @escaping (UserData?, Error?) -> Void) {
+		taskForGETRequest(url: Endpoints.getUserData(sessionID).url, response: UserData.self) { (response, error) in
 			if let response = response {
 				completion(response, nil)
 			} else {
@@ -38,9 +49,9 @@ class OnTheMapClient {
 
 // MARK: - Tasks
 	class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL?,
-																																								 response: ResponseType.Type,
-																																								 body: RequestType,
-																																								 completion: @escaping (ResponseType?, Error?) -> Void) {
+																																					 response: ResponseType.Type,
+																																					 body: RequestType,
+																																					 completion: @escaping (ResponseType?, Error?) -> Void) {
 		guard let url = url else {
 			return
 		}
@@ -93,7 +104,8 @@ class OnTheMapClient {
 		}
 	}
 
-	class func taskForGETRequest<ResponseType: Decodable>(url: URL?, response: ResponseType.Type, completion: @escaping (ResponseType?, Error?) -> Void){
+	class func taskForGETRequest<ResponseType: Decodable>(url: URL?, response: ResponseType.Type,
+																										completion: @escaping (ResponseType?, Error?) -> Void){
 		guard let url = url else {
 			return
 		}
@@ -113,9 +125,18 @@ class OnTheMapClient {
 				}
 			} catch {
 				print("taskForGETRequest: " +  error.localizedDescription)
-				DispatchQueue.main.async {
-					completion(nil, error)
+        //Try to decode the data removing the first 5 characters
+				do {
+					let responseObject = try decoder.decode(ResponseType.self, from: data.subdata(in: 5..<data.count))
+					DispatchQueue.main.async {
+						completion(responseObject, nil)
+					}
+				} catch {
+					DispatchQueue.main.async {
+						completion(nil, error)
+					}
 				}
+
 			}
 		}
 		task.resume()

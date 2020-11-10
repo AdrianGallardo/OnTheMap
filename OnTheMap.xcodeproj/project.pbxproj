@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7559D8E5255A59E2000E46BE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7559D8E4255A59E2000E46BE /* UserData.swift */; };
 		75634D2C254EDF7B001D80E3 /* OnTheMapClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75634D2B254EDF7B001D80E3 /* OnTheMapClient.swift */; };
 		75636B94254C9D6100693E11 /* LocationsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75636B93254C9D6100693E11 /* LocationsMapViewController.swift */; };
 		75636B99254C9DDE00693E11 /* LocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75636B98254C9DDE00693E11 /* LocationsTableViewController.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7559D8E4255A59E2000E46BE /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		75634D2B254EDF7B001D80E3 /* OnTheMapClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapClient.swift; sourceTree = "<group>"; };
 		75636B93254C9D6100693E11 /* LocationsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsMapViewController.swift; sourceTree = "<group>"; };
 		75636B98254C9DDE00693E11 /* LocationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsTableViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				7563EA0F25525E71009BF5F1 /* LoginRequestResponse.swift */,
 				7563EA142552628E009BF5F1 /* OnTheMapResponse.swift */,
 				756681792553337600AD2F36 /* StudentLocations.swift */,
+				7559D8E4255A59E2000E46BE /* UserData.swift */,
 			);
 			path = OnTheMap;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7559D8E5255A59E2000E46BE /* UserData.swift in Sources */,
 				7566817A2553337600AD2F36 /* StudentLocations.swift in Sources */,
 				7563EA0B255256E8009BF5F1 /* LoginRequest.swift in Sources */,
 				75636B99254C9DDE00693E11 /* LocationsTableViewController.swift in Sources */,

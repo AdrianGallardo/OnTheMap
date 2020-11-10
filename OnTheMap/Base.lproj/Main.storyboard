@@ -402,8 +402,11 @@
                                                     <action selector="findLocation:" destination="Xun-NT-e2n" eventType="touchUpInside" id="NHt-gJ-Y6v"/>
                                                 </connections>
                                             </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Ezd-6f-I59">
+                                                <rect key="frame" x="16" y="204" width="358" height="20"/>
+                                            </activityIndicatorView>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="R7c-Hh-gcp">
-                                                <rect key="frame" x="16" y="204" width="358" height="299"/>
+                                                <rect key="frame" x="16" y="242" width="358" height="261"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
@@ -424,6 +427,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Location" id="RBK-6f-HFI"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Ezd-6f-I59" id="nSC-sm-9q1"/>
                         <outlet property="findLocationButton" destination="EQt-Dz-snG" id="3sa-Nl-9cf"/>
                         <outlet property="locationTextField" destination="CLo-5O-pyf" id="1B3-YO-dzf"/>
                         <outlet property="mediaUrlTextField" destination="RtG-gM-2tR" id="Q4r-22-Szd"/>
@@ -465,21 +469,38 @@
                                     <action selector="finish:" destination="fD4-Rx-LYA" eventType="touchUpInside" id="Yxp-ea-O7k"/>
                                 </connections>
                             </button>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kqg-Ge-zrR">
+                                <rect key="frame" x="0.0" y="44" width="390" height="766"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="EcF-cb-zDm">
+                                <rect key="frame" x="176.66666666666666" y="408.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="k1m-Jf-6NL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="k1m-Jf-6NL" firstAttribute="trailing" secondItem="yFY-5q-UCA" secondAttribute="trailing" id="274-b1-MIE"/>
                             <constraint firstItem="yFY-5q-UCA" firstAttribute="top" secondItem="k1m-Jf-6NL" secondAttribute="top" id="6gS-fp-j9i"/>
+                            <constraint firstItem="Kqg-Ge-zrR" firstAttribute="leading" secondItem="k1m-Jf-6NL" secondAttribute="leading" id="88G-8h-1iG"/>
+                            <constraint firstItem="Kqg-Ge-zrR" firstAttribute="centerX" secondItem="k1m-Jf-6NL" secondAttribute="centerX" id="9Jy-hF-s56"/>
+                            <constraint firstItem="k1m-Jf-6NL" firstAttribute="bottom" secondItem="Kqg-Ge-zrR" secondAttribute="bottom" id="FyQ-hM-ENn"/>
+                            <constraint firstItem="Kqg-Ge-zrR" firstAttribute="top" secondItem="k1m-Jf-6NL" secondAttribute="top" id="KGG-qO-ihb"/>
+                            <constraint firstItem="EcF-cb-zDm" firstAttribute="centerY" secondItem="Kqg-Ge-zrR" secondAttribute="centerY" id="M1G-KU-SIb"/>
                             <constraint firstItem="0AO-TT-Rog" firstAttribute="leading" secondItem="k1m-Jf-6NL" secondAttribute="leading" constant="16" id="OIn-lW-6Uk"/>
                             <constraint firstItem="k1m-Jf-6NL" firstAttribute="trailing" secondItem="0AO-TT-Rog" secondAttribute="trailing" constant="16" id="Rx7-d5-6hE"/>
                             <constraint firstItem="k1m-Jf-6NL" firstAttribute="bottom" secondItem="0AO-TT-Rog" secondAttribute="bottom" constant="32" id="S3o-Th-aLK"/>
+                            <constraint firstItem="k1m-Jf-6NL" firstAttribute="trailing" secondItem="Kqg-Ge-zrR" secondAttribute="trailing" id="Xj4-OG-30s"/>
+                            <constraint firstItem="EcF-cb-zDm" firstAttribute="centerX" secondItem="Kqg-Ge-zrR" secondAttribute="centerX" id="dkM-Jg-dD5"/>
                             <constraint firstItem="k1m-Jf-6NL" firstAttribute="bottom" secondItem="yFY-5q-UCA" secondAttribute="bottom" id="qfU-VV-DeB"/>
+                            <constraint firstItem="Kqg-Ge-zrR" firstAttribute="centerY" secondItem="k1m-Jf-6NL" secondAttribute="centerY" id="uZe-Bl-6cd"/>
                             <constraint firstItem="yFY-5q-UCA" firstAttribute="leading" secondItem="k1m-Jf-6NL" secondAttribute="leading" id="wFp-dG-x4y"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0z0-GO-E0i"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="EcF-cb-zDm" id="xIK-DY-ubv"/>
+                        <outlet property="activityIndicatorView" destination="Kqg-Ge-zrR" id="jE3-BZ-qcM"/>
                         <outlet property="mapView" destination="yFY-5q-UCA" id="2TJ-Pr-B70"/>
                     </connections>
                 </viewController>

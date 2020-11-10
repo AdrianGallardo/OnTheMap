@@ -13,6 +13,7 @@ class AddLocationViewController: UIViewController {
 	@IBOutlet weak var locationTextField: UITextField!
 	@IBOutlet weak var mediaUrlTextField: UITextField!
 	@IBOutlet weak var findLocationButton: UIButton!
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
 	override func viewWillAppear(_ animated: Bool) {
 		tabBarController?.tabBar.isHidden = true
@@ -39,6 +40,7 @@ class AddLocationViewController: UIViewController {
 	}
 
 	func findCoordinate(addressString: String, completionHandler: @escaping (CLLocationCoordinate2D, Error?) -> Void ) {
+		activityIndicator.startAnimating()
 		let geocoder = CLGeocoder()
 		geocoder.geocodeAddressString(addressString) { (placemarks, error) in
 			if error == nil {
@@ -53,6 +55,7 @@ class AddLocationViewController: UIViewController {
 	}
 
 	func handleGetCoordinate(coordinates: CLLocationCoordinate2D, error: Error?) {
+		activityIndicator.stopAnimating()
 		if let error = error {
 			let alertVC = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
 			alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
