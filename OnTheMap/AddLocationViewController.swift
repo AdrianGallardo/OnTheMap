@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 
 class AddLocationViewController: UIViewController {
-	
+
 	@IBOutlet weak var locationTextField: UITextField!
 	@IBOutlet weak var mediaUrlTextField: UITextField!
 	@IBOutlet weak var findLocationButton: UIButton!
@@ -62,7 +62,9 @@ class AddLocationViewController: UIViewController {
 			show(alertVC, sender: nil)
 			return
 		}
-		if let findLocationVC = self.storyboard!.instantiateViewController(withIdentifier: "findLocationViewController") as? FindLocationViewController {
+		if let findLocationVC = self.storyboard!.instantiateViewController(withIdentifier: "findLocationViewController")
+				as? FindLocationViewController {
+			findLocationVC.mapString = self.locationTextField.text ?? ""
 			findLocationVC.coordinates = coordinates
 			findLocationVC.mediaUrl = self.mediaUrlTextField.text ?? ""
 			self.navigationController!.pushViewController(findLocationVC, animated: true)

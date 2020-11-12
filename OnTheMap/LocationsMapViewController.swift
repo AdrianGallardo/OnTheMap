@@ -35,7 +35,7 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
 			}
 			var annotations = [MKPointAnnotation]()
 
-			for location in studentLocations.results {
+			for location in studentLocations.results! {
 				let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(location.latitude),
 																								longitude: CLLocationDegrees(location.longitude))
 				let annotation = MKPointAnnotation()

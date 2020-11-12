@@ -57,12 +57,12 @@ class LocationsTableViewController: UIViewController, UITableViewDataSource, UIT
 	}
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return self.locations?.results.count ?? 0
+		return self.locations?.results?.count ?? 0
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "locationViewCell")!
-		if let studentLocat = locations?.results[indexPath.row] {
+		if let studentLocat = locations?.results?[indexPath.row] {
 			cell.textLabel?.text = "\(studentLocat.firstName) \(studentLocat.lastName)"
 			cell.detailTextLabel?.text = "\(studentLocat.mediaURL)"
 		}
@@ -70,7 +70,7 @@ class LocationsTableViewController: UIViewController, UITableViewDataSource, UIT
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		guard let mediaString = locations?.results[indexPath.row].mediaURL else {
+		guard let mediaString = locations?.results?[indexPath.row].mediaURL else {
 			return
 		}
 		guard let mediaUrl = URL(string: mediaString) else {

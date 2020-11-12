@@ -12,8 +12,10 @@ class FindLocationViewController: UIViewController, MKMapViewDelegate {
 	@IBOutlet weak var mapView: MKMapView!
 	@IBOutlet weak var activityIndicatorView: UIView!
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+	var mapString: String?
 	var coordinates: CLLocationCoordinate2D?
 	var mediaUrl: String?
+	var userData: UserData?
 
 	override func viewWillAppear(_ animated: Bool) {
 		tabBarController?.tabBar.isHidden = true
@@ -21,20 +23,40 @@ class FindLocationViewController: UIViewController, MKMapViewDelegate {
 	}
 
 	func loadUserData() {
-		self.activityIndicator.startAnimating()
-		self.activityIndicatorView.isHidden = false
-
+		print("FindLocationVC: load user data")
+		showNetworkActivity(true)
 		OnTheMapClient.getUserData(completion: self.handleGetUserData(userData:error:))
 	}
 
-	func handleGetUserData(userData: UserData?, error: Error?) {
-		self.activityIndicator.stopAnimating()
-		self.activityIndicatorView.isHidden = true
+	@IBAction func finish(_ sender: Any) {
+		showNetworkActivity(true)
+		
+		OnTheMapClient.getStudentInformation(completion: self.handleStudentInformation(studentInformation:error:))
+	}
 
+	func showNetworkActivity(_ isNetworking: Bool) {
+		if isNetworking {
+			self.activityIndicator.startAnimating()
+		} else {
+			self.activityIndicator.stopAnimating()
+		}
+		self.activityIndicatorView.isHidden = !isNetworking
+	}
+
+	func messageAlert(_ message: String) {
+		let alertVC = UIAlertController(title: "Attention", message: message, preferredStyle: .alert)
+		alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+		self.present(alertVC, animated: true)
+	}
+
+	// MARK: -  Handlers
+	func handleGetUserData(userData: UserData?, error: Error?) {
 		guard let userData = userData else {
 			print(String(reflecting: error))
 			return
 		}
+
+		self.userData = userData
 
 		if let coordinates = self.coordinates {
 			let annotation = MKPointAnnotation()
@@ -43,10 +65,64 @@ class FindLocationViewController: UIViewController, MKMapViewDelegate {
 			annotation.subtitle = self.mediaUrl
 			self.mapView.addAnnotation(annotation)
 		}
+
+		showNetworkActivity(false)
+		print("FindLocationVC: user data loaded")
 	}
 
-	@IBAction func finish(_ sender: Any) {
+	func handleStudentInformation(studentInformation: StudentInformation?, error: Error?) {
+		print("FindLocationVC: handle student information")
+		print("FindLocationVC: student information -> " + String(reflecting: studentInformation))
+		guard let studentInformation = studentInformation else {
+			postStudentInformation()
+			return
+		}
 
+		updateStudentInformation(studentInformation: studentInformation)
+	}
+
+	func handlePostStudentInformation(success: Bool, error: Error?) {
+		print("FindLocationVC: handle post student information")
+		if success {
+			self.messageAlert("Location Posted Correctly!")
+		} else {
+			print(String(reflecting: error))
+		}
+		showNetworkActivity(false)
+	}
+
+	func handleUpdateStudentInformation(success: Bool, error: Error?) {
+		print("FindLocationVC: handle update student information")
+		if success {
+			self.messageAlert("Location Updated Correctly!")
+		} else {
+			print(String(reflecting: error))
+		}
+		showNetworkActivity(false)
+	}
+
+	func postStudentInformation() {
+		print("FindLocationVC: post student information")
+		guard let userData = self.userData else {
+			return
+		}
+		guard let coordinates = self.coordinates else {
+			return
+		}
+		guard let mapString = self.mapString else {
+			return
+		}
+		guard let mediaUrl = self.mediaUrl else {
+			return
+		}
+		let body = StudentInformation(firstName: userData.firstName, lastName: userData.lastName, latitude: coordinates.latitude, longitude: coordinates.longitude,
+																	mapString: mapString, mediaURL: mediaUrl, uniqueKey: OnTheMapClient.uniqueKey)
+		OnTheMapClient.postStudentInformation(body: body, completion: self.handlePostStudentInformation(success:error:))
+	}
+
+	func updateStudentInformation(studentInformation: StudentInformation) {
+		print("FindLocationVC: update student information")
+		OnTheMapClient.updateStudentInformation(body: studentInformation, completion: self.handleUpdateStudentInformation(success:error:))
 	}
 
 	// MARK: - MKMapViewDelegate

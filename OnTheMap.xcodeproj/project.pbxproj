@@ -16,7 +16,9 @@
 		7563EA0B255256E8009BF5F1 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563EA0A255256E8009BF5F1 /* LoginRequest.swift */; };
 		7563EA1025525E71009BF5F1 /* LoginRequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563EA0F25525E71009BF5F1 /* LoginRequestResponse.swift */; };
 		7563EA152552628E009BF5F1 /* OnTheMapResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563EA142552628E009BF5F1 /* OnTheMapResponse.swift */; };
-		7566817A2553337600AD2F36 /* StudentLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756681792553337600AD2F36 /* StudentLocations.swift */; };
+		7566817A2553337600AD2F36 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756681792553337600AD2F36 /* StudentInformation.swift */; };
+		75710A89255C6AA700A1C07E /* StudentLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75710A88255C6AA700A1C07E /* StudentLocations.swift */; };
+		75710A8E255CBF4200A1C07E /* PostStudentInformationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75710A8D255CBF4200A1C07E /* PostStudentInformationResponse.swift */; };
 		75ABBBFC2549A7090021A2D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ABBBFB2549A7090021A2D0 /* AppDelegate.swift */; };
 		75ABBBFE2549A7090021A2D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ABBBFD2549A7090021A2D0 /* SceneDelegate.swift */; };
 		75ABBC002549A7090021A2D0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ABBBFF2549A7090021A2D0 /* LoginViewController.swift */; };
@@ -54,7 +56,9 @@
 		7563EA0A255256E8009BF5F1 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		7563EA0F25525E71009BF5F1 /* LoginRequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestResponse.swift; sourceTree = "<group>"; };
 		7563EA142552628E009BF5F1 /* OnTheMapResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapResponse.swift; sourceTree = "<group>"; };
-		756681792553337600AD2F36 /* StudentLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocations.swift; sourceTree = "<group>"; };
+		756681792553337600AD2F36 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
+		75710A88255C6AA700A1C07E /* StudentLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocations.swift; sourceTree = "<group>"; };
+		75710A8D255CBF4200A1C07E /* PostStudentInformationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStudentInformationResponse.swift; sourceTree = "<group>"; };
 		75ABBBF82549A7090021A2D0 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75ABBBFB2549A7090021A2D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75ABBBFD2549A7090021A2D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,8 +138,10 @@
 				7563EA0A255256E8009BF5F1 /* LoginRequest.swift */,
 				7563EA0F25525E71009BF5F1 /* LoginRequestResponse.swift */,
 				7563EA142552628E009BF5F1 /* OnTheMapResponse.swift */,
-				756681792553337600AD2F36 /* StudentLocations.swift */,
+				756681792553337600AD2F36 /* StudentInformation.swift */,
 				7559D8E4255A59E2000E46BE /* UserData.swift */,
+				75710A88255C6AA700A1C07E /* StudentLocations.swift */,
+				75710A8D255CBF4200A1C07E /* PostStudentInformationResponse.swift */,
 			);
 			path = OnTheMap;
 			sourceTree = "<group>";
@@ -310,9 +316,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7559D8E5255A59E2000E46BE /* UserData.swift in Sources */,
-				7566817A2553337600AD2F36 /* StudentLocations.swift in Sources */,
+				7566817A2553337600AD2F36 /* StudentInformation.swift in Sources */,
 				7563EA0B255256E8009BF5F1 /* LoginRequest.swift in Sources */,
 				75636B99254C9DDE00693E11 /* LocationsTableViewController.swift in Sources */,
+				75710A89255C6AA700A1C07E /* StudentLocations.swift in Sources */,
 				7563EA1025525E71009BF5F1 /* LoginRequestResponse.swift in Sources */,
 				75636B9E254C9E0E00693E11 /* AddLocationViewController.swift in Sources */,
 				7563EA152552628E009BF5F1 /* OnTheMapResponse.swift in Sources */,
@@ -321,6 +328,7 @@
 				75636B94254C9D6100693E11 /* LocationsMapViewController.swift in Sources */,
 				75ABBC002549A7090021A2D0 /* LoginViewController.swift in Sources */,
 				75ABBBFC2549A7090021A2D0 /* AppDelegate.swift in Sources */,
+				75710A8E255CBF4200A1C07E /* PostStudentInformationResponse.swift in Sources */,
 				75ABBBFE2549A7090021A2D0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

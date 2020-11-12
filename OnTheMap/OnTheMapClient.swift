@@ -9,6 +9,7 @@ import Foundation
 
 class OnTheMapClient {
 	static var sessionID = ""
+	static var uniqueKey = ""
 
 	class func login(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
 		let body = LoginRequest(udacity: LoginData(username: username, password: password))
@@ -19,6 +20,7 @@ class OnTheMapClient {
 											 response: LoginRequestResponse.self, body: body) { (response, error) in
 			if let response = response {
 				sessionID = response.session.id
+				uniqueKey = response.account.key
 				completion(true, nil)
 			} else {
 				completion(false, error)
@@ -38,6 +40,7 @@ class OnTheMapClient {
 	}
 
 	class func getUserData(completion: @escaping (UserData?, Error?) -> Void) {
+		print("client: get user data")
 		taskForGETRequest(url: Endpoints.getUserData(sessionID).url, response: UserData.self) { (response, error) in
 			if let response = response {
 				completion(response, nil)
@@ -47,15 +50,76 @@ class OnTheMapClient {
 		}
 	}
 
+	class func getStudentInformation(completion: @escaping (StudentInformation?, Error?) -> Void) {
+		print("client: getStudentInformation")
+		taskForGETRequest(url: Endpoints.getStudentInformation(uniqueKey).url,
+											response: StudentLocations.self) { (response, error) in
+			if let response = response {
+				completion(response.results?[0], nil)
+			} else {
+				completion(nil, error)
+			}
+		}
+	}
+
+	class func postStudentInformation(body: StudentInformation, completion: @escaping (Bool, Error?) -> Void) {
+		print("client: postStudentInformation")
+		taskForPOSTRequest(url: Endpoints.postStudentInformation.url, response: PostStudentInformationResponse.self, body: body) { (response, error) in
+			if response != nil {
+				completion(true, nil)
+			} else {
+				completion(false, error)
+			}
+		}
+	}
+
+	class func updateStudentInformation(body: StudentInformation, completion: @escaping (Bool, Error?) -> Void) {
+		print("client: updateStudentInformation")
+		guard let url = Endpoints.updateStudentInformation(uniqueKey).url else {
+			print("error URL update")
+			return
+		}
+		print("client updateStudentInformation: url -> " + String(reflecting: url))
+		var request = URLRequest(url: url)
+
+		request.httpMethod = "PUT"
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+		do{
+			request.httpBody = try JSONEncoder().encode(body)
+			print("client updateStudentInformation: body -> " + String(data: request.httpBody!, encoding: .utf8)!)
+
+			let task = URLSession.shared.dataTask(with: request) { data, response, error in
+				print("client updateStudentInformation: data -> " + String(data: data!, encoding: .utf8)!)
+				guard let data = data else {
+					DispatchQueue.main.async {
+						completion(false, error)
+					}
+					return
+				}
+				DispatchQueue.main.async {
+					completion(true, nil)
+				}
+			}
+			task.resume()
+
+		} catch {
+			DispatchQueue.main.async {
+				completion(false, error)
+			}
+		}
+	}
+
 // MARK: - Tasks
 	class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL?,
 																																					 response: ResponseType.Type,
 																																					 body: RequestType,
 																																					 completion: @escaping (ResponseType?, Error?) -> Void) {
+		print("client: taskForPOSTRequest")
 		guard let url = url else {
 			return
 		}
-		print(String(reflecting: url))
+		print("client taskForPOSTRequest: url -> " + String(reflecting: url))
 		var request = URLRequest(url: url)
 
 		request.httpMethod = "POST"
@@ -63,9 +127,10 @@ class OnTheMapClient {
 
 		do {
 			request.httpBody = try JSONEncoder().encode(body)
-			print(String(data: request.httpBody!, encoding: .utf8)!)
+			print("client taskForPOSTRequest: body -> " + String(data: request.httpBody!, encoding: .utf8)!)
 
 			let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
+				print("client taskForPOSTRequest: data -> " + String(data: data!, encoding: .utf8)!)
 				guard let data = data else {
 					print("error data")
 					DispatchQueue.main.async {
@@ -76,20 +141,29 @@ class OnTheMapClient {
 				print(String(data: data, encoding: .utf8)!)
 				let decoder = JSONDecoder()
 				do {
-					let responseObject = try decoder.decode(ResponseType.self, from: data.subdata(in: 5..<data.count))
+					let responseObject = try decoder.decode(ResponseType.self, from: data)
 					print(responseObject)
 					DispatchQueue.main.async {
 						completion(responseObject, nil)
 					}
 				} catch {
+					print("client taskForPOSTRequest: " +  error.localizedDescription)
 					do {
-						let errorResponse = try decoder.decode(OnTheMapResponse.self, from: data.subdata(in: 5..<data.count))
+						let responseObject = try decoder.decode(ResponseType.self, from: data.subdata(in: 5..<data.count))
+						print("client taskForGETRequest: Data decoded after removing 5 first characters")
 						DispatchQueue.main.async {
-							completion(nil, errorResponse)
+							completion(responseObject, nil)
 						}
 					} catch {
-						DispatchQueue.main.async {
-							completion(nil, error)
+						do {
+							let errorResponse = try decoder.decode(OnTheMapResponse.self, from: data.subdata(in: 5..<data.count))
+							DispatchQueue.main.async {
+								completion(nil, errorResponse)
+							}
+						} catch {
+							DispatchQueue.main.async {
+								completion(nil, error)
+							}
 						}
 					}
 				}
@@ -106,10 +180,13 @@ class OnTheMapClient {
 
 	class func taskForGETRequest<ResponseType: Decodable>(url: URL?, response: ResponseType.Type,
 																										completion: @escaping (ResponseType?, Error?) -> Void){
+		print("client: taskForGETRequest")
 		guard let url = url else {
 			return
 		}
+		print("client taskForGETRequest: url -> " + String(reflecting: url))
 		let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+			print("client taskForGETRequest: data -> " + String(data: data!, encoding: .utf8)!)
 			guard let data = data else {
 				DispatchQueue.main.async {
 					completion(nil, error)
@@ -124,10 +201,10 @@ class OnTheMapClient {
 					completion(responseObject, nil)
 				}
 			} catch {
-				print("taskForGETRequest: " +  error.localizedDescription)
-        //Try to decode the data removing the first 5 characters
+				print("client taskForGETRequest: " +  error.localizedDescription)
 				do {
 					let responseObject = try decoder.decode(ResponseType.self, from: data.subdata(in: 5..<data.count))
+					print("client taskForGETRequest: Data decoded after removing 5 first characters")
 					DispatchQueue.main.async {
 						completion(responseObject, nil)
 					}
@@ -148,17 +225,19 @@ extension OnTheMapClient {
 		static let base = "https://onthemap-api.udacity.com/v1"
 
 		case getStudentLocations(Int)
-		case postStudentLocation
-		case updateStudentLocation(String)
+		case postStudentInformation
+		case updateStudentInformation(String)
 		case createSessionId
 		case logout
 		case getUserData(String)
+		case getStudentInformation(String)
 
 		var stringValue: String {
 			switch self {
-			case .getStudentLocations(let limit): return Endpoints.base + "/StudentLocation?limit=\(limit)"
-			case .postStudentLocation: return Endpoints.base + "/StudentLocation"
-			case .updateStudentLocation(let objectId): return Endpoints.base + "/StudentLocation/\(objectId)"
+			case .getStudentLocations(let limit): return Endpoints.base + "/StudentLocation?limit=\(limit)&order=-updatedAt"
+			case .getStudentInformation(let uniqueKey): return Endpoints.base + "/StudentLocation?uniqueKey=\(uniqueKey)"
+			case .postStudentInformation: return Endpoints.base + "/StudentLocation"
+			case .updateStudentInformation(let objectId): return Endpoints.base + "/StudentLocation/\(objectId)"
 			case .createSessionId, .logout: return Endpoints.base + "/session"
 			case .getUserData(let userId): return Endpoints.base + "/users/\(userId)"
 			}
