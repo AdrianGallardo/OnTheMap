@@ -30,7 +30,6 @@ class FindLocationViewController: UIViewController, MKMapViewDelegate {
 
 	@IBAction func finish(_ sender: Any) {
 		showNetworkActivity(true)
-		
 		OnTheMapClient.getStudentInformation(completion: self.handleStudentInformation(studentInformation:error:))
 	}
 
@@ -49,7 +48,7 @@ class FindLocationViewController: UIViewController, MKMapViewDelegate {
 		self.present(alertVC, animated: true)
 	}
 
-	// MARK: -  Handlers
+	// MARK: - Handlers
 	func handleGetUserData(userData: UserData?, error: Error?) {
 		guard let userData = userData else {
 			print(String(reflecting: error))

@@ -64,7 +64,8 @@ class OnTheMapClient {
 
 	class func postStudentInformation(body: StudentInformation, completion: @escaping (Bool, Error?) -> Void) {
 		print("client: postStudentInformation")
-		taskForPOSTRequest(url: Endpoints.postStudentInformation.url, response: PostStudentInformationResponse.self, body: body) { (response, error) in
+		taskForPOSTRequest(url: Endpoints.postStudentInformation.url,
+											 response: PostStudentInformationResponse.self, body: body) { (response, error) in
 			if response != nil {
 				completion(true, nil)
 			} else {
@@ -85,13 +86,13 @@ class OnTheMapClient {
 		request.httpMethod = "PUT"
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-		do{
+		do {
 			request.httpBody = try JSONEncoder().encode(body)
 			print("client updateStudentInformation: body -> " + String(data: request.httpBody!, encoding: .utf8)!)
 
-			let task = URLSession.shared.dataTask(with: request) { data, response, error in
+			let task = URLSession.shared.dataTask(with: request) { data, _, error in
 				print("client updateStudentInformation: data -> " + String(data: data!, encoding: .utf8)!)
-				guard let data = data else {
+				guard data != nil else {
 					DispatchQueue.main.async {
 						completion(false, error)
 					}
@@ -179,13 +180,13 @@ class OnTheMapClient {
 	}
 
 	class func taskForGETRequest<ResponseType: Decodable>(url: URL?, response: ResponseType.Type,
-																										completion: @escaping (ResponseType?, Error?) -> Void){
+																										completion: @escaping (ResponseType?, Error?) -> Void) {
 		print("client: taskForGETRequest")
 		guard let url = url else {
 			return
 		}
 		print("client taskForGETRequest: url -> " + String(reflecting: url))
-		let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+		let task = URLSession.shared.dataTask(with: url) { (data, _, error) in
 			print("client taskForGETRequest: data -> " + String(data: data!, encoding: .utf8)!)
 			guard let data = data else {
 				DispatchQueue.main.async {
