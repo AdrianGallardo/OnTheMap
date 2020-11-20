@@ -100,6 +100,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		75AA07262565686100B4B141 /* OnTheMapClient */ = {
+			isa = PBXGroup;
+			children = (
+				75634D2B254EDF7B001D80E3 /* OnTheMapClient.swift */,
+			);
+			path = OnTheMapClient;
+			sourceTree = "<group>";
+		};
+		75AA0727256568EF00B4B141 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				75ABBBFF2549A7090021A2D0 /* LoginViewController.swift */,
+				75636B93254C9D6100693E11 /* LocationsMapViewController.swift */,
+				75636B98254C9DDE00693E11 /* LocationsTableViewController.swift */,
+				75636B9D254C9E0E00693E11 /* AddLocationViewController.swift */,
+				75636BA2254C9E4000693E11 /* FindLocationViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		75AA07282565694200B4B141 /* OnTheMap Requests */ = {
+			isa = PBXGroup;
+			children = (
+				7563EA0A255256E8009BF5F1 /* LoginRequest.swift */,
+				756681792553337600AD2F36 /* StudentInformation.swift */,
+				7559D8E4255A59E2000E46BE /* UserData.swift */,
+				75710A88255C6AA700A1C07E /* StudentLocations.swift */,
+			);
+			path = "OnTheMap Requests";
+			sourceTree = "<group>";
+		};
+		75AA0729256569DC00B4B141 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				7563EA0F25525E71009BF5F1 /* LoginRequestResponse.swift */,
+				75710A8D255CBF4200A1C07E /* PostStudentInformationResponse.swift */,
+				7563EA142552628E009BF5F1 /* OnTheMapResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		75AA072A25656A1000B4B141 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				75ABBC012549A7090021A2D0 /* Main.storyboard */,
+				75ABBC042549A70D0021A2D0 /* Assets.xcassets */,
+				75ABBC062549A70D0021A2D0 /* LaunchScreen.storyboard */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		75ABBBEF2549A7090021A2D0 = {
 			isa = PBXGroup;
 			children = (
@@ -123,25 +174,14 @@
 		75ABBBFA2549A7090021A2D0 /* OnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				75AA072A25656A1000B4B141 /* Assets */,
+				75AA0729256569DC00B4B141 /* Responses */,
+				75AA07282565694200B4B141 /* OnTheMap Requests */,
+				75AA0727256568EF00B4B141 /* Controller */,
+				75AA07262565686100B4B141 /* OnTheMapClient */,
 				75ABBBFB2549A7090021A2D0 /* AppDelegate.swift */,
 				75ABBBFD2549A7090021A2D0 /* SceneDelegate.swift */,
-				75ABBBFF2549A7090021A2D0 /* LoginViewController.swift */,
-				75ABBC012549A7090021A2D0 /* Main.storyboard */,
-				75ABBC042549A70D0021A2D0 /* Assets.xcassets */,
-				75ABBC062549A70D0021A2D0 /* LaunchScreen.storyboard */,
 				75ABBC092549A70D0021A2D0 /* Info.plist */,
-				75636B93254C9D6100693E11 /* LocationsMapViewController.swift */,
-				75636B98254C9DDE00693E11 /* LocationsTableViewController.swift */,
-				75636B9D254C9E0E00693E11 /* AddLocationViewController.swift */,
-				75636BA2254C9E4000693E11 /* FindLocationViewController.swift */,
-				75634D2B254EDF7B001D80E3 /* OnTheMapClient.swift */,
-				7563EA0A255256E8009BF5F1 /* LoginRequest.swift */,
-				7563EA0F25525E71009BF5F1 /* LoginRequestResponse.swift */,
-				7563EA142552628E009BF5F1 /* OnTheMapResponse.swift */,
-				756681792553337600AD2F36 /* StudentInformation.swift */,
-				7559D8E4255A59E2000E46BE /* UserData.swift */,
-				75710A88255C6AA700A1C07E /* StudentLocations.swift */,
-				75710A8D255CBF4200A1C07E /* PostStudentInformationResponse.swift */,
 			);
 			path = OnTheMap;
 			sourceTree = "<group>";

@@ -11,6 +11,7 @@ class OnTheMapClient {
 	static var sessionID = ""
 	static var uniqueKey = ""
 
+	// MARK: - Auxiliar Functions
 	class func login(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
 		let body = LoginRequest(udacity: LoginData(username: username, password: password))
 		print("username: \(username)")
@@ -26,6 +27,32 @@ class OnTheMapClient {
 				completion(false, error)
 			}
 		}
+	}
+
+	class func logout() {
+		guard let url = Endpoints.logout.url else {
+			return
+		}
+		var request = URLRequest(url: url)
+		request.httpMethod = "DELETE"
+
+		var xsrfCookie: HTTPCookie?
+		let sharedCookieStorage = HTTPCookieStorage.shared
+		for cookie in sharedCookieStorage.cookies! {
+			if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+		}
+		if let xsrfCookie = xsrfCookie {
+			request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+		}
+		let session = URLSession.shared
+		let task = session.dataTask(with: request) { data, _, error in
+			if error != nil {
+				return
+			}
+			let newData = data?.subdata(in: 5..<data!.count)
+			print(String(data: newData!, encoding: .utf8)!)
+		}
+		task.resume()
 	}
 
 	class func getStudentLocations(limit: Int, completion: @escaping (StudentLocations?, Error?) -> Void) {
@@ -111,7 +138,7 @@ class OnTheMapClient {
 		}
 	}
 
-// MARK: - Tasks
+// MARK: - POST Task
 	class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL?,
 																																					 response: ResponseType.Type,
 																																					 body: RequestType,
@@ -178,7 +205,7 @@ class OnTheMapClient {
 			}
 		}
 	}
-
+	// MARK: - GET Task
 	class func taskForGETRequest<ResponseType: Decodable>(url: URL?, response: ResponseType.Type,
 																										completion: @escaping (ResponseType?, Error?) -> Void) {
 		print("client: taskForGETRequest")
