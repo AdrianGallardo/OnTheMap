@@ -62,6 +62,9 @@ class FindLocationViewController: UIViewController, MKMapViewDelegate {
 			annotation.coordinate = coordinates
 			annotation.title = "\(userData.firstName) \(userData.lastName)"
 			annotation.subtitle = self.mediaUrl
+			let region = MKCoordinateRegion(center: annotation.coordinate,
+																		span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+			mapView.setRegion(region, animated: true)
 			self.mapView.addAnnotation(annotation)
 		}
 
@@ -86,6 +89,7 @@ class FindLocationViewController: UIViewController, MKMapViewDelegate {
 			self.messageAlert("Location Posted Correctly!")
 		} else {
 			print(String(reflecting: error))
+			self.messageAlert(error?.localizedDescription ?? "")
 		}
 		showNetworkActivity(false)
 	}
@@ -96,6 +100,7 @@ class FindLocationViewController: UIViewController, MKMapViewDelegate {
 			self.messageAlert("Location Updated Correctly!")
 		} else {
 			print(String(reflecting: error))
+			self.messageAlert(error?.localizedDescription ?? "")
 		}
 		showNetworkActivity(false)
 	}

@@ -44,6 +44,7 @@ class LocationsTableViewController: UIViewController, UITableViewDataSource, UIT
 	}
 
 	@IBAction func logout(_ sender: Any) {
+		OnTheMapClient.logout()
 		self.dismiss(animated: true, completion: nil)
 	}
 

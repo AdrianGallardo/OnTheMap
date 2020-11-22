@@ -22,6 +22,12 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
 		loadData()
 	}
 
+	func messageAlert(_ message: String) {
+		let alertVC = UIAlertController(title: "Attention", message: message, preferredStyle: .alert)
+		alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+		self.present(alertVC, animated: true)
+	}
+
 	func loadData() {
 		self.activityIndicator.startAnimating()
 		self.activityIndicatorView.isHidden = false
@@ -31,6 +37,7 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
 				self.activityIndicator.stopAnimating()
 				self.activityIndicatorView.isHidden = true
 				print(String(reflecting: error))
+				self.messageAlert(error?.localizedDescription ?? "")
 				return
 			}
 			var annotations = [MKPointAnnotation]()
@@ -53,6 +60,7 @@ class LocationsMapViewController: UIViewController, MKMapViewDelegate {
 	}
 
 	@IBAction func logout(_ sender: Any) {
+		OnTheMapClient.logout()
 		self.dismiss(animated: true, completion: nil)
 	}
 

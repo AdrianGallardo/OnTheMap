@@ -57,9 +57,8 @@ class AddLocationViewController: UIViewController {
 	func handleGetCoordinate(coordinates: CLLocationCoordinate2D, error: Error?) {
 		activityIndicator.stopAnimating()
 		if let error = error {
-			let alertVC = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-			alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-			show(alertVC, sender: nil)
+			print(error.localizedDescription)
+			messageAlert("The given location cannot be found on the map")
 			return
 		}
 		if let findLocationVC = self.storyboard!.instantiateViewController(withIdentifier: "findLocationViewController")
